@@ -1,0 +1,104 @@
+﻿@* <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TechShopWeb</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TechShopWeb.styles.css" asp-append-version="true" />
+</head> *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="~/css/necolas.github.io_normalize.css_8.0.1_normalize.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/Upsert.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/icons/css/all.min.css" asp-append-version="true">
+
+    <title>TechShopWeb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"> -->
+</head>
+<body>
+    @* <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TechShopWeb</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header> *@
+    <header name="top">
+    <a class="toThetop" href="#top"><i class="fa-solid fa-caret-up fa-bounce fa-xl"></i></a>
+    <div class="container">
+      <div class="left">
+        <div class="logo">
+          <img src="~/images/logoWIthNoBackground2.png" alt="Logo">
+        </div>
+        <ul class="navBar">
+          <li class="center Active" data-src="home"><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+          <li class="center " data-src="Order"><a href="#"> Order Management</a></li>
+          <li class="center" data-src="dashboard"><a href="#"> DashBoard</a></li>
+          <li class="center" data-src="manage">
+            <div>Manage <i style="padding-left: 5px;" class="fa-solid fa-chevron-down fa-2xs"></i></div>
+            <ul class="drop-down">
+              <li><a asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Categoreis</a></li>
+              <li><a asp-area="Admin" asp-controller="Product" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Products</a></li>
+              <li><a href="#"><i class="fa-solid fa-angles-right"></i>Shippers</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <ul class="right">
+        <li class="center" style="margin-right: 10px;"><a href="#">&+</a></li>
+        <li class="center"><a class="login btn" href="#">Login</a></li>
+        <li class="center"><a class="register btn" href="#">Register</a></li>
+        <li class="center"><i class="list-head  fa-solid fa-list"></i></li>
+      </ul>
+    </div>
+  </header>
+    <div >
+        <main role="main">
+            <partial name="_Notification" />
+            @RenderBody()
+        </main>
+    </div>
+
+   @*  <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - TechShopWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>  *@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/layout.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,9 @@
+﻿@if (TempData["success"] != null)
+{
+	<p class="notification"><i style="padding-right : 5px" class="fa-solid fa-check fa-lg"></i>@TempData["success"]</p>
+	<script src="~/js/Index_notification.js"></script>
+}
+@if (TempData["error"] != null)
+{
+	<h1>@TempData["error"]</h1>
+}

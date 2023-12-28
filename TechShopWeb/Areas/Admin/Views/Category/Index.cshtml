@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Category>
+
+<section class="categories">
+    <div class="container">
+        <div class="title">
+            <h1>Category List</h1>
+            <a asp-action="Upsert">Create Category</a>
+        </div>
+        <div class="content">
+            <table class="content-tabel">
+                <thead>
+                    <tr>
+                        <th data-cell="Category Name">Category Name</th>
+                        <th data-cell="Description">Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model){
+                    <tr>
+                        <td data-cell="Category Name">@item.CategoryName</td>
+                        <td data-cell="Description">@item.Description</td>
+                        <td>
+                            <div>
+                            <a class="edit" asp-action="Upsert" asp-route-id ="@item.Id"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                             @using (Html.BeginForm("Delete", "Category", FormMethod.Post, new { id = "aform"}))
+                            {
+                             @Html.Hidden("id", item.Id)
+                            <button type="submit" id="btnOut"  onclick="submitMethode(event)"  data-id="@item.Id" class="delete"> <i class="fa-solid fa-trash fa-lg"></i></button>
+                            }
+                                </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+
+    <script src="~/js/delete.js"></script>
+}

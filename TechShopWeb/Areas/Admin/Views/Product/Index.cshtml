@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Product>
+
+<section class="categories">
+    <div class="container">
+        <div class="title">
+            <h1>Product List</h1>
+            <a asp-action="Upsert">Create Product</a>
+        </div>
+        <div class="Actions">
+            <form  method="post" enctype="multipart/form-data">
+                <input type="text" id="sortVal" name="sortVal" hidden/>
+                <div class="search">
+                    <input type="text" id="searchInput" name="ValueToSearch" placeholder="Search by : Name , Category, Company"
+                           value="@(TempData["searchValue"] == null ? "" : TempData["searchValue"])">
+                    <div>
+                        <button type="submit" asp-action="Search" onclick="return PreventEmpty()">Search</button>
+                        <button type="submit" asp-action="Reset" class="refrech">Refrech</button>
+                    </div>
+                </div>
+                <div class="category">
+                    <label for="sort">Sorted by:</label>
+                    <div>
+                        <button id="sort" type="submit" onclick="return false">Product Name</button >
+                        <ul>
+                            <li><button asp-action="SortedBy" asp-route-sortedby="ProductName" class="subSort" data-sort="Product Name"><i class="fa-solid fa-angles-right"></i>Product Name</button></li>
+                            <li><button asp-action="SortedBy" asp-route-sortedby="Quantity" class="subSort" data-sort="Quantity"><i class="fa-solid fa-angles-right"></i>Quantity</button></li>
+                            <li><button asp-action="SortedBy" asp-route-sortedby="Price" class="subSort" data-sort="Price"><i class="fa-solid fa-angles-right"></i>Price</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="content">
+            <table class="content-tabel">
+                <thead>
+                    <tr>
+                        <th ><i class="fa-solid fa-image fa-xl"></i></th>
+                        <th>Product Name</th>
+                        <th >Quantity</th>
+                        <th >Price</th>
+                        <th>Category</th>
+                        <th>Company Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                    <tr>
+                        <td class="forprd" data-cell="Image"><img src="@item.ImageUrl" style="width:90px;" alt=""></td>
+                        <td class="forprd" data-cell="Product Name">@item.ProductName</td>
+                        <td class="forprd" data-cell="Quantity">@item.Quantity</td>
+                        <td class="forprd" data-cell="Price">@item.Price.ToString("c")</td>
+                        <td class="forprd" data-cell="Category">@item.Category.CategoryName</td>
+                        <td class="forprd" data-cell="Company Name">@item.CompanyName</td>
+                        <td>
+                            <div>
+                                <a class="edit" asp-controller="Product" asp-action="Upsert" asp-route-id="@item.Id">
+                                    <i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                @using (Html.BeginForm("Delete", "Product", FormMethod.Post, new { id = "aform"}))
+                                {
+                                @Html.Hidden("id", item.Id)
+                                <button type="submit" id="btnOut"  onclick="submitMethode(event)"  data-id="@item.Id" class="delete"> <i class="fa-solid fa-trash fa-lg"></i></button>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/delete.js"></script>
+    <script>
+        let searchInput = document.getElementById("searchInput");
+        function PreventEmpty() {
+            if (searchInput.value === "") {
+                return false;
+            }else{
+                hidden.value = sortbtn.innerText;
+                return true;
+            }
+        }
+        let sortbtn = document.getElementById("sort");
+        let sortbtns = document.querySelectorAll(".Actions form .category div ul .subSort");
+        let hidden = document.getElementById("sortVal");
+
+        if (sessionStorage.getItem("sortedBy")) {
+            sortbtn.innerText = sessionStorage.getItem("sortedBy")
+        }
+        sortbtns.forEach(function (elem) {
+            elem.onclick = function(){
+                sessionStorage.setItem("sortedBy", elem.dataset.sort);
+            }
+        })
+    </script>
+}

@@ -1,0 +1,90 @@
+﻿@model ProductVM
+
+<section>
+    <div class="container">
+        <div class="Box">
+            <h1>@(Model.Product.Id != 0 ? "Update" : "Create") Product</h1>
+            <form  method="post" enctype="multipart/form-data">
+                <input asp-for="Product.Id" hidden />
+                <input asp-for="Product.ImageUrl" hidden />
+                <div>
+                    <label asp-for="Product.ProductName"></label>
+                    <input asp-for="Product.ProductName" placeholder="Name of the Product" />
+                    <span asp-validation-for="Product.ProductName"></span>
+                </div>
+                <div>
+                    <label asp-for="Product.Quantity"></label>
+                    <input asp-for="Product.Quantity"/>
+                    <span asp-validation-for="Product.Quantity"></span>
+                </div>
+                <div>
+                    <label asp-for="Product.Price"></label>
+                    <input asp-for="Product.Price" placeholder="" />
+                    <span asp-validation-for="Product.Price"></span>
+                </div>
+                <div>
+                    <label asp-for="Product.CompanyName"></label>
+                    <input asp-for="Product.CompanyName" placeholder="Name of the Company" />
+                    <span asp-validation-for="Product.CompanyName"></span>
+                </div>
+                <div>
+                    <label asp-for="Product.CategoryId"></label>
+                    <div class="selectItem">
+                        <select class="select-cr" asp-for="Product.CategoryId" asp-items="@Model.CategoryList">
+                            <option disabled selected>Select Category</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label asp-for="Product.Description"></label>
+                    <textarea asp-for="Product.Description"></textarea>
+                    <span asp-validation-for="Product.Description"></span>
+                </div>
+                <div>
+                    <input id="imageInput" type="file" name="file" class="file-up" />
+                </div>
+                <div class="image">
+                    <img id="imagePreview" src="@Model.Product.ImageUrl" />
+                </div>
+                <div class="btns">
+                    @if (Model.Product.Id != 0)
+                    {
+                        <button type="submit">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit">Create</button>
+                    }
+                    <a asp-controller="Product" asp-action="Index">Back To List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        var input = document.getElementById("imageInput");
+
+        input.onchange = function (e) {
+            console.log(e);
+            var preview = document.getElementById("imagePreview");
+
+            if (input.files && input.files[0]) {
+                //we create a file reader specific for that file
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    console.log(e);
+                };
+                //readAsDataURL is used to read the contents of the file and convert them into a data URL.
+                //The result of this operation can be accessed in the onload event handler.
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
