@@ -1,20 +1,12 @@
-﻿using Humanizer;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ShopTech.DataAccess.Repository.IRepository;
 using ShopTech.Models;
 using ShopTech.Models.VModels;
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Reflection.Emit;
-using System.Runtime.Intrinsics.Arm;
 
 namespace TechShopWeb.Areas.Admin.Controllers
-{ 
+{
     [Area("Admin")]
     public class ProductController : Controller
     {
