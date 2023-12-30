@@ -16,6 +16,8 @@ namespace ShopTech.DataAccess.Data.Configuration
             builder.ToTable("OrderHeaders");
             builder.HasOne(x => x.Shipper).WithMany(x => x.OrderHeaders).HasForeignKey(x => x.ShipperId)
                 .IsRequired(false).OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(x => x.AppUser).WithMany(x => x.OrderHeaders).HasForeignKey(x => x.UserId).IsRequired().OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

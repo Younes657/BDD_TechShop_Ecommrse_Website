@@ -16,6 +16,8 @@ namespace ShopTech.DataAccess.Data.Configuration
             builder.ToTable("ShoppingCarts");
             builder.HasOne(x => x.Product).WithMany(x => x.shoppingCarts).HasForeignKey(x => x.ProductId)
                 .OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.AppUser).WithMany(x => x.ShoppingCarts).HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

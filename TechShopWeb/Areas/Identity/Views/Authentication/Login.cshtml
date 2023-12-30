@@ -1,0 +1,43 @@
+﻿
+@model LoginVM
+
+<section class="log center">
+    <img src="~/images/ddd.png"/>
+    <div class="content">
+        <form class="center" id="logform"  method="post" enctype="multipart/form-data">
+            <h1>LOGIN</h1>
+            <div asp-validation-summary="ModelOnly"></div>
+            <div>
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName">
+                <span asp-validation-for="UserName"></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input type="password"  asp-for="Password">
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="check">
+                <div>
+                    <input class="checksp" type="checkbox" id="check" asp-for="RememberMe">
+                    <label class="checklb" for="check">Remember Me</label>
+                </div>
+                <a href="#">Forget Password</a>
+            </div>
+            <button type="submit">Log IN</button>
+        </form>
+    </div>
+</section>
+@section Scripts{
+    <script>
+        let formlogin = document.getElementById("logform");
+        window.onload = function () {
+            formlogin.style.cssText = `
+                        transform : translateY(0);
+                    `
+        }
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

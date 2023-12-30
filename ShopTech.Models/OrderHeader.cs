@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopTech.Models
 {
@@ -8,6 +9,8 @@ namespace ShopTech.Models
         public int Id { get; set; }
         [Required]
         public string UserId { get; set; }
+        [ValidateNever]
+        public ApplicationUser AppUser { get; set; } = null!;
         [Required]
         public DateOnly OrderDate { get; set; }
         public DateOnly OrderShippingDate { get; set; }
@@ -16,6 +19,7 @@ namespace ShopTech.Models
         public string PaymentStatus { get; set;}
         public DateOnly PaymentDate { get; set; }
         public int ShipperId { get; set; }
+        [ValidateNever]
         public Shipper Shipper { get; set; }
         public int TrackingNumber { get; set; }
         //info about the customer
@@ -30,7 +34,7 @@ namespace ShopTech.Models
         public string PostalCode { get; set; }
         [Required]
         public string Email { get; set; }
-
+        [ValidateNever]
         public ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }
 }

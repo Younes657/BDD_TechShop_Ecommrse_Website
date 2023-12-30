@@ -1,0 +1,81 @@
+﻿
+@model RegisterVM
+
+<section >
+    <div class="container">
+        <div class="Box">
+            <h1>@(User.IsInRole(SD.Role_Admin) ? "Admin Registration" : "Registration")</h1>
+            <div asp-validation-summary="ModelOnly"></div>
+            <form id="register" method="post" enctype="multipart/form-data">
+                <div class="all">
+                    <div class="left">
+                        <div>
+                            <label asp-for="Register.Name">Full Name</label>
+                            <input type="text" asp-for="Register.Name">
+                            <span asp-validation-for="Register.Name"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Register.City"></label>
+                            <input type="text" asp-for="Register.City">
+                            <span asp-validation-for="Register.City"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Register.Adress"></label>
+                            <input type="text" asp-for="Register.Adress">
+                            <span asp-validation-for="Register.Adress"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Register.PhoneNumber">Phone Number</label>
+                            <input type="text" asp-for="Register.PhoneNumber">
+                        </div>
+                        <div>
+                            <label asp-for="Register.PostalCode">Postal Code</label>
+                            <input type="text" asp-for="Register.PostalCode">
+                            <span asp-validation-for="Register.PostalCode"></span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div>
+                            <label asp-for="Register.UserName"> </label>
+                            <input type="text" asp-for="Register.UserName">
+                            <span asp-validation-for="Register.UserName"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Register.Email"></label>
+                            <input  asp-for="Register.Email">
+                            <span asp-validation-for="Register.Email"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Register.Password"></label>
+							<input asp-for="Register.Password">
+                            <span asp-validation-for="Register.Password"></span>
+                        </div>
+                        <div>
+                            <label asp-for="Register.ConfirmPassword">Confirm Password</label>
+                            <input asp-for="Register.ConfirmPassword">
+                            <span asp-validation-for="Register.ConfirmPassword"></span>
+                        </div>
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <div class="selectItem">
+                                <select class="select-cr" asp-for="Register.Role" asp-items="@Model.RoleList">
+                                    <option value="" selected disabled>Select a Role</option>
+                                </select>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="regBtn">
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+@section scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

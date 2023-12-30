@@ -180,6 +180,7 @@ header .container .Active{
   header .container .left .toggle {
     display: flex;
     top: 100%;
+    z-index:100;
   }
   header .container .left .navBar > li {
     border-bottom: 1px solid #e7e6e6;
@@ -229,8 +230,6 @@ header .container .left .navBar li .drop-down li a:hover{
   background-color: #fafafa;
   transform: translateX(10px);
 }
-
-
 .notification {
     position: absolute;
     top: -50px;
@@ -245,10 +244,17 @@ header .container .left .navBar li .drop-down li a:hover{
     box-shadow: 0 0 11px 0 rgb(0 0 0 / 0.5);
     opacity: 0;
 }
-
 .notification-2V {
     top: 55px;
     opacity: 1;
     transition: 0.5s;
     z-index: 100;
+}
+header .container .right li a span{
+    padding-inline: 13px;
+    color: white;
+    font-weight:bold;
+    background-color:lightcoral;
+    border-radius:50%;
+    margin-left:5px;
 }

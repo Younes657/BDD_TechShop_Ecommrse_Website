@@ -1,0 +1,72 @@
+﻿.log{
+    height: calc(100vh - 60px);
+    box-shadow: 0 2px 10px 3px #00000034 inset;
+    position: relative;
+}
+.log img{
+    position:absolute;
+    inset:0;
+    width: 100%;
+    height:100%;
+    z-index : -1;
+}
+.log .content form{  
+    flex-direction: column;
+    box-shadow: 0px 7px 21px 4px rgba(0,0,0,0.4);
+    gap: 30px;
+    padding: 40px;
+    background-color: white;
+    box-sizing: border-box;
+    transform: translateY(80px);
+    transition: 0.5s;
+}
+.log .content form h1{
+    color: var(--main-color);
+}
+.log .content form div label:not(.checklb){
+    display: block;
+    color: gray;
+    padding-bottom: 3px;
+}
+.log .content form input:not(.checksp){
+    width: 350px;
+    padding: 8px 10px;
+    display: block;
+    background-color: var(--background-color);
+    border: none;
+    box-shadow:1px 4px 4px 0 rgb(0 0 0 / 0.1);
+}
+@media (max-width: 500px) {
+    .log .content form input:not(.checksp){
+        width: 300px;
+    }
+}
+.log .content form input:not(.checksp):focus{
+    border: none;
+    outline: 1px solid var(--main-color);
+}
+.log .content form button{
+    width: 100%;
+    padding-block: 8px;
+    background-color: var(--main-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: var(--main-transition);
+}
+.log .content form span{
+    color:darkred;
+    font-size:12px;
+}
+.log .content form button:hover{
+    opacity: 0.7;
+}
+.log .content form .check{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.log .content form .check a{
+    color: var(--main-color);
+    text-decoration: underline;
+}
