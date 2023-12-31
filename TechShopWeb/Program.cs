@@ -22,9 +22,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 builder.Services.ConfigureApplicationCookie(options => {
-    options.LoginPath = $"/Authentication/Login";
-    options.LogoutPath = $"/Authentication/LogOut";
-    options.AccessDeniedPath = $"/Authentication/AccessDenied";
+    options.LoginPath = $"/Identity/Authentication/Login";
+    options.LogoutPath = $"/Identity/Authentication/LogOut";
+    options.AccessDeniedPath = $"/Identity/Authentication/AccessDenied";
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 });
 

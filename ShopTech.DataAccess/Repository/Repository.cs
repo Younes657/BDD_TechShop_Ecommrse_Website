@@ -21,7 +21,7 @@ namespace ShopTech.DataAccess.Repository
             _db  = db;
             Set = _db.Set<T>(); 
         }
-        public IEnumerable<T> GetAll(string TabelName ,string? filter = null, string? IncludePr = null)
+        public IEnumerable<T>? GetAll(string TabelName ,string? filter = null, string? IncludePr = null)
         {
             IQueryable<T> query;
             if (filter != null)
@@ -32,6 +32,7 @@ namespace ShopTech.DataAccess.Repository
             {
                 query = Set.FromSqlRaw($"SELECT  TOP (100) PERCENT * FROM dbo.{TabelName}");
             }
+
             if (!string.IsNullOrEmpty(IncludePr))
             {
                 string[] Navigations = IncludePr.Split([',']);
@@ -56,8 +57,7 @@ namespace ShopTech.DataAccess.Repository
                 }
             }
             if (!Tracked) query = query.AsNoTracking();
-
-            return query.FirstOrDefault() ;
+            return query.FirstOrDefault();
            
         }
 

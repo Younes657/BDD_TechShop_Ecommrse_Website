@@ -1,0 +1,36 @@
+﻿@model ShoppingCart
+<section>
+    <div class="container">
+        <div class="Box">
+            <h1>@Model.Product.ProductName</h1>
+            <form method="post" enctype="multipart/form-data">
+                <input asp-for="ProductId" hidden />
+                <input asp-for="Price" hidden />
+                <div class="details">
+                    <div class="imgSide">
+                        <img src="@Model.Product.ImageUrl" alt="">
+                    </div>
+                    <div class="contentSide">
+                        <p class="category">@Model.Product.Category.CategoryName </p>
+                        <p><span> Company :</span>@Model.Product.CompanyName</p>
+                        <p><span>Price :</span>@Model.Product.Price.ToString("c")</p>
+                        <p><span>Quantity :</span> @Model.Product.Quantity</p>
+                        <p><span>Description :</span></p>
+                        <p>
+                            @Model.Product.Description
+                        </p>
+                        <div>
+                            <label asp-for="Quantity" >Count</label>
+                            <input asp-for="Quantity" max="@Model.Product.Quantity">
+                            <span asp-validation-for="Quantity"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="btns">
+                    <a asp-action="Index">Back to Home</a>
+                    <button type="submit">Add To Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

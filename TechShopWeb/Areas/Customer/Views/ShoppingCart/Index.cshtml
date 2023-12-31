@@ -1,0 +1,73 @@
+﻿
+@model ShopingCartVM
+<section>
+    <div class="container">
+        <div class="Box special">
+            <h1>Shopping Cart</h1>
+            <form method="post" enctype="multipart/form-data">
+                <a class="Back" asp-controller="Home" asp-action="Index">Continue Shopping</a>
+                <div class="all-content">
+                    <div class="shop-dtl">
+                        @foreach(var item in Model.ShoppingCarts)
+                        {
+                        <div class="row">
+                            <div class="image"><img src="@item.Product.ImageUrl" alt=""></div>
+                            <p style="font-weight: bold;">@item.Product.ProductName</p>
+                            <p>@item.Product.Price.ToString("c") x @item.Quantity</p>
+                            <div class="Actions">
+                                <a asp-action="Plus" asp-route-id="@item.Id"><i class="fa-solid fa-square-plus"></i></a> &nbsp;
+                                <a asp-action="Minus" asp-route-id = "@item.Id"><i class="fa-solid fa-square-minus"></i></a>
+                            </div>
+                            <p>@((item.Product.Price * @item.Quantity).ToString("c"))</p>
+                            <div class="delete">
+                                <a asp-action="Remove" asp-route-id="@item.Id">
+                                    <i style="color: darkred;" class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        }
+                        <div class="total">
+                            <p class="desc">Total Order :</p>
+                            <p class="number">@Model.OrderHeader.OrderTotal.ToString("c")</p>
+                        </div>
+                    </div>
+                    <div class="order-dtl">
+                        <div>
+                            <label asp-for="OrderHeader.Name"></label>
+                            <input  asp-for="OrderHeader.Name">
+                            <span asp-validation-for="OrderHeader.Name"></span>
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.PhoneNumber">Phone</label>
+                            <input asp-for="OrderHeader.PhoneNumber">
+                            <span asp-validation-for="OrderHeader.PhoneNumber"></span>
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.City"></label>
+                            <input  asp-for="OrderHeader.City">
+                            <span asp-validation-for="OrderHeader.City"></span>
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.Adress"></label>
+                            <input asp-for="OrderHeader.Adress">
+                            <span asp-validation-for="OrderHeader.Adress"></span>
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.Email"></label>
+                            <input asp-for="OrderHeader.Email">
+                            <span asp-validation-for="OrderHeader.Email"></span>
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.PostalCode"></label>
+                            <input asp-for="OrderHeader.PostalCode">
+                            <span asp-validation-for="OrderHeader.PostalCode"></span>
+                        </div>
+                        <div class="order-btn btns" style="width:100%">
+                            <button type="submit">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

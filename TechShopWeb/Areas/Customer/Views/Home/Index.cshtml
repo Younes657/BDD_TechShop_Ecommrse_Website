@@ -1,3 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Product>
+
+<section class="home-intro">
+    <div class="container">
+        <div class="lanR">
+            <h1>Welcome,To TechShop </h1>
+            <p>
+                We offer high-quality electronic products and accessories that suit all categories no matter who
+                you are, a simple student, a professional such as a programmer, or a graphic designer.
+                You are in the right place
+            </p>
+        </div>
+        <div class="landImg"><img src="~/images/intro-home.png" alt="Younes"></div>
+    </div>
+</section>
+<a href="#Products" class="go-down">
+    <i class="fa-solid fa-angles-down fa-bounce fa-xl"></i>
+</a>
+<section class="all-prd">
+    <div id="Products" class="container">
+        <h1 class="main-title">PRODUCTS</h1>
+        <div class="cards">
+            @foreach(var item in Model)
+            {
+            <div class="card">
+                <div class="image"><img src="@item.ImageUrl" alt=""></div>
+                <p class="title-prd">@item.ProductName</p>
+                <p class="comp">Company : @item.CompanyName</p>
+                <p class="priceCell">Price : @item.Price.ToString("c") </p>
+                <div class="btnDetails">
+                    <a asp-controller="Home" asp-action="Detail" asp-route-prdId="@item.Id">Details</a>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

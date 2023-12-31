@@ -1,0 +1,92 @@
+﻿
+.container .special.Box{
+    width: 100%;
+}
+.special.Box form{
+    width: 95%;
+}
+.special.Box form .all-content{
+    display: flex;
+    justify-content: space-between;
+}
+.special.Box form .all-content .shop-dtl{
+    width: 63%;
+}
+.special.Box form .all-content .order-dtl{
+    width: 33%;
+}
+@media (max-width: 991px){
+    .special.Box form .all-content{
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .special.Box form .all-content .shop-dtl{
+        width: 100%;
+    }
+    .special.Box form .all-content .order-dtl{
+        width: 100%;
+    }
+}
+.special.Box form .all-content .order-dtl div{
+    margin-bottom: 10px;
+}
+.special.Box form .all-content .shop-dtl .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--main-color);
+    padding:5px 10px;
+    gap: 15px;
+}
+.special.Box form .all-content .shop-dtl .row p:nth-of-type(1){
+    width: 200px;
+}
+.special.Box form .all-content .shop-dtl .total{
+    background-color: var(--second-color);
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    padding-block: 15px;
+    margin-top: 15px;
+}
+.special.Box form .all-content .shop-dtl .row img{
+    width: 100px;
+}
+.special.Box form .all-content .shop-dtl .row .Actions{
+    display: flex;
+}
+.special.Box form .all-content .shop-dtl .row .Actions a{
+    border: 1px solid var(--main-color);
+    padding: 5px 12px;
+    transition: var(--main-transition);
+}
+.special.Box form .all-content .shop-dtl .row .Actions a i{
+    color: var(--main-color);
+}
+.special.Box form .all-content .shop-dtl .row a:hover{
+    opacity: 0.7;
+}
+.special.Box form .all-content .order-dtl .order-btn button{
+    width: 100%;
+}
+.special.Box form .Back{
+    width: fit-content;
+    color: var(--second-color);
+    font-weight: bold;
+    padding: 7px;
+    border: 2px solid var(--second-color);
+    margin-bottom: 20px;
+    transition: var(--main-transition);
+}
+.special.Box form .Back:hover{
+    background-color: var(--second-color);
+    color: white;
+}
+@media (max-width:600px) {
+    .special.Box form .all-content .shop-dtl .row{
+        font-size: 14px;
+    }
+    .special.Box form .all-content .shop-dtl .row img{
+        width: 60px;
+    }
+}

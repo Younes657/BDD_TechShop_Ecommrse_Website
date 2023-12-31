@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="~/css/Upsert.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/login.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/register.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/ProductDetail.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/ShoppingCart.css" asp-append-version="true">
     <link rel="stylesheet" href="~/icons/css/all.min.css" asp-append-version="true">
 
     <title>TechShopWeb</title>
@@ -68,7 +71,8 @@
         </ul>
       </div>
       <ul class="right">
-         <li class="center" style="margin-right: 10px;"><a href="#" style="color:#2196f3"><i class="fa-solid fa-cart-plus fa-lg"></i>&nbsp;(0)</a></li>
+         <li class="center" style="margin-right: 10px;"><a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" style="color:#2196f3">
+             <i class="fa-solid fa-cart-plus fa-lg"></i>&nbsp;(0)</a></li>
          @if (User.Identity.IsAuthenticated)
          {
              <li class="center"><a href="#">

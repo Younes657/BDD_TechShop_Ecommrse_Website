@@ -6,7 +6,7 @@ namespace ShopTech.Models
     public class ShoppingCart
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
         public int ProductId { get; set; }
         [ValidateNever]
@@ -16,6 +16,7 @@ namespace ShopTech.Models
         [ValidateNever]
         public ApplicationUser AppUser { get; set; } = null!;
         public decimal Price { get; set; }
+        [Range(1, 1000, ErrorMessage = "Invalid Number for this field")]
         public int Quantity { get; set; }
     }
 }

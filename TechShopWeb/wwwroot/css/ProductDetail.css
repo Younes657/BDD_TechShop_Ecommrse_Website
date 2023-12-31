@@ -1,0 +1,61 @@
+﻿.Box form .details{
+    display: flex;
+    justify-content: space-between;
+    align-items:  center;
+}
+.Box form .details .imgSide{
+    width:40%
+}
+.Box .details .imgSide img{
+    width: 100%;
+}
+.Box .details .contentSide{
+    width: 45%;
+    align-self: center;
+}
+@media (max-width : 767px) {
+    .Box form .details{
+        flex-direction: column;
+    }
+    .Box .details .contentSide{
+        width: 100%;
+    }
+    .Box form .details .imgSide{
+        width: 50%;
+    }
+}
+.Box .details .contentSide p{
+    margin-bottom: 15px;
+}
+.Box .details .contentSide p span{
+    display: initial;
+    font-size: 16px;
+    color: var(--main-color);
+    font-weight: bold;
+    margin-right: 5px;
+}
+.Box .details .contentSide .category{
+    color: white;
+    background-color: var(--second-color);
+    width: fit-content;
+    font-size: 15px;
+    padding: 4px;
+    border-radius: 7px;
+}
+.Box .details .contentSide div {
+    display: flex;
+    justify-content: flex-start;
+}
+.Box .details .contentSide div label{
+    width: fit-content;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: white;
+    font-weight: bold;
+}
+.Box .details .contentSide div input{
+    border: 1px solid black;
+    border-left: none;
+    background-color: white;
+    width:50%;
+}
