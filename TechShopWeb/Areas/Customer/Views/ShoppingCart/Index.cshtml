@@ -1,10 +1,9 @@
-﻿
-@model ShopingCartVM
+﻿@model ShopingCartVM
 <section>
     <div class="container">
         <div class="Box special">
             <h1>Shopping Cart</h1>
-            <form method="post" enctype="multipart/form-data">
+            <form id="Order-form" method="post" enctype="multipart/form-data">
                 <a class="Back" asp-controller="Home" asp-action="Index">Continue Shopping</a>
                 <div class="all-content">
                     <div class="shop-dtl">
@@ -63,7 +62,7 @@
                             <span asp-validation-for="OrderHeader.PostalCode"></span>
                         </div>
                         <div class="order-btn btns" style="width:100%">
-                            <button type="submit">Place Order</button>
+                            <button id="Order-btn" type="submit">Place Order</button>
                         </div>
                     </div>
                 </div>
@@ -71,3 +70,7 @@
         </div>
     </div>
 </section>
+
+@section Scripts{
+    <script src="~/js/payment.js"></script>
+}

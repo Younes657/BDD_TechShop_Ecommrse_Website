@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Shipper>
+
+<section class="categories">
+    <div class="container">
+        <div class="title">
+            <h1>Shippers List</h1>
+            <a asp-action="Upsert">Create Shipper</a>
+        </div>
+        <div class="content">
+            <table class="content-tabel">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th >Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model){
+                    <tr>
+                        <td  class="forprd" data-cell="Company Name">@item.CompanyName</td>
+                        <td  class="forprd" data-cell="Phone">@item.Phone</td>
+                        <td  class="forprd" data-cell="Email">@item.Email</td>
+                        <td>
+                            <div>
+                            <a class="edit" asp-action="Upsert" asp-route-id ="@item.Id"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                             @using (Html.BeginForm("Delete", "Shipper", FormMethod.Post, new { id = "aform"}))
+                            {
+                             @Html.Hidden("id", item.Id)
+                            <button type="submit" id="btnOut"  onclick="submitMethode(event)"  data-id="@item.Id" class="delete"> <i class="fa-solid fa-trash fa-lg"></i></button>
+                            }
+                                </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+
+    <script src="~/js/delete.js"></script>
+}

@@ -2,14 +2,12 @@
 let form = document.getElementById("aform");
 console.log(form);
 function submitMethode(e) {
-    console.log("aaaa");
     var id = e.target.parentElement.dataset.id;
     e.preventDefault();
     document.querySelector('#aform input[name="id"]').value = id;
     Validate();
 }
 let btn = document.getElementById("btnOut");
-console.log(btn);
 //btn.addEventListener("click", submitMethode(e))
 
 function Validate(id) {

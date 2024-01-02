@@ -48,7 +48,60 @@ namespace TechShopWeb.Areas.Customer.Controllers
 
             return View(ShopCartVM);
         }
+        [HttpPost]
+        [ActionName("Index")]
+        public IActionResult IndexPost()
+        {
+            var user = (ClaimsIdentity)User.Identity;
+            string result = user.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            ShopCartVM.ShoppingCarts = _unitOfWork._ShoppingCartRepository.GetAll("ShoppingCarts", $"Where UserId = '{result}'", IncludePr: "Product");
+            if(ShopCartVM.ShoppingCarts.Count() == 0)
+            {
+                TempData["error"] = "No Products to be Ordered !!";
+                return View(ShopCartVM);
+            }
+            //we should recalculate the totale because in the index action we are just storing it in memory not in db
+            decimal totalPrice = 0;
+            foreach (var cart in ShopCartVM.ShoppingCarts)
+            {
+                totalPrice += cart.Price * cart.Quantity;
+            }
+            ShopCartVM.OrderHeader.OrderTotal = totalPrice;
+
+            ShopCartVM.OrderHeader.OrderDate = DateTime.Now;
+            ShopCartVM.OrderHeader.OrderStatus = SD.StatusAproved;
+            ShopCartVM.OrderHeader.PaymentDate = DateOnly.FromDateTime(DateTime.Now);
+            ShopCartVM.OrderHeader.PaymentStatus = SD.PaymentAproved;
+            ShopCartVM.OrderHeader.UserId = result;
+
+            _unitOfWork.AppDbContext().OrderHeaders.Add(ShopCartVM.OrderHeader);
+            _unitOfWork.AppDbContext().SaveChanges();
+
+            OrderDetail OrdDetail= new();
+            foreach(var item in ShopCartVM.ShoppingCarts)
+            {
+                OrdDetail.OrderId = ShopCartVM.OrderHeader.Id;
+                OrdDetail.ProductId = item.ProductId;
+                OrdDetail.Quantity = item.Quantity;
+                OrdDetail.Price = item.Price;
+                _unitOfWork._OrderDetailRepository.Add(OrdDetail);
+            }
+            return RedirectToAction(nameof(ConfirmationOrder) , new {id = ShopCartVM.OrderHeader.Id});
+        }
+        public IActionResult ConfirmationOrder(int id)
+        {
+            var user = (ClaimsIdentity)User.Identity;
+            string result = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            OrderHeader order = _unitOfWork._OrderHeaderRepository.GetOne("OrderHeaders" , $"Where Id = {id}");
+
+            IEnumerable<ShoppingCart>? shopCarts = _unitOfWork._ShoppingCartRepository.GetAll("ShoppingCarts", $"Where UserId = '{result}'");
+
+            _unitOfWork.AppDbContext().ShoppingCarts.RemoveRange(shopCarts);
+            _unitOfWork.AppDbContext().SaveChanges();
+            return View(order);
+        }
         public IActionResult Plus(int id)
         {
             var cart = _unitOfWork._ShoppingCartRepository.GetOne("ShoppingCarts","Where Id = "+ id);

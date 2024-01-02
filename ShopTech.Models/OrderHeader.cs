@@ -12,15 +12,15 @@ namespace ShopTech.Models
         [ValidateNever]
         public ApplicationUser AppUser { get; set; } = null!;
         [Required]
-        public DateOnly OrderDate { get; set; }
-        public DateOnly OrderShippingDate { get; set; }
+        public DateTime OrderDate { get; set; }
+        public DateOnly? OrderShippingDate { get; set; }
         public decimal OrderTotal { get; set; }
         public string OrderStatus { get; set;}
         public string PaymentStatus { get; set;}
         public DateOnly PaymentDate { get; set; }
-        public int ShipperId { get; set; }
+        public int? ShipperId { get; set; }
         [ValidateNever]
-        public Shipper Shipper { get; set; }
+        public Shipper? Shipper { get; set; }
         public int TrackingNumber { get; set; }
         //info about the customer
 

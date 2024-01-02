@@ -12,6 +12,10 @@ namespace ShopTech.DataAccess.Repository.IRepository
          ICategoryRepo _CategoryRepository { get; }
          IProductRepo _ProductRepository { get; }
          IShoppingCartRepo _ShoppingCartRepository { get; }
+         IShipperRepo _ShipperRepository { get; }
+         IOrderHeaderRepo _OrderHeaderRepository { get; }
+         IOrderDetailsRepo _OrderDetailRepository { get; }
+
         AppDbContext AppDbContext();
     }
 }

@@ -11,7 +11,10 @@ namespace ShopTech.Models
         [DisplayName("Company Name")]
         public string CompanyName { get; set; }
         [Required]
+        [DataType(DataType.PhoneNumber)]
         public string Phone {  get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public ICollection<OrderHeader>? OrderHeaders { get; set; } = new List<OrderHeader>();
 

@@ -100,7 +100,7 @@ namespace TechShopWeb.Areas.Identity.Controllers
                 await _UserManager.AddToRoleAsync(user, registerVM.Register.Role ?? SD.Role_Cust);
                 if (User.IsInRole(SD.Role_Admin))
                 {
-                    TempData["message"] = "User Created Succefully";
+                    TempData["success"] = "User Created Succefully";
                     return View(registerVM);
                 }
                 else

@@ -51,9 +51,6 @@
   padding-right: 5px;
   text-align: left;
 }
-.categories .container .content-tabel tr th:first-child {
-  text-align: center;
-}
 .categories .container .content-tabel tr td:last-child {
   /* display: flex;
     /* gap:35px */

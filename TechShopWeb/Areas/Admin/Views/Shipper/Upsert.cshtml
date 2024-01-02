@@ -1,0 +1,43 @@
+﻿@model Shipper
+<section class="Upsert">
+	<div class="container">
+		<div class="Box">
+			<h1>@(Model.Id != 0 ? "Update" : "Create") Shipper</h1>
+			<form method="post" enctype="multipart/form-data">
+				<input asp-for="Id" hidden />
+				<div>
+					<label asp-for="CompanyName"></label>
+					<input asp-for="CompanyName" />
+					<span asp-validation-for="CompanyName"></span>
+				</div>
+				<div>
+					<label asp-for="Phone"></label>
+					<input asp-for="Phone" />
+					<span asp-validation-for="Phone"></span>
+				</div>
+				<div>
+					<label asp-for="Email"></label>
+					<input asp-for="Email" />
+					<span asp-validation-for="Email"></span>
+				</div>
+				<div class="btns">
+					@if (Model.Id != 0)
+					{
+						<button type="submit">Update</button>
+					}
+					else
+					{
+						<button type="submit">Create</button>
+					}
+					<a asp-controller="Shipper" asp-action="Index">Back To List</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

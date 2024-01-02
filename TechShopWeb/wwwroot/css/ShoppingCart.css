@@ -90,3 +90,35 @@
         width: 60px;
     }
 }
+
+/*for the confirmation Order page*/
+.Confirmation .container .confirm{
+    align-items: center;
+}
+.Confirmation .container .confirm p::before{
+    content: "";
+    font-family: "Font Awesome 6 Free";
+    content: "\f101";
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    color: var(--main-color);
+}
+.Confirmation .container .confirm p {
+    margin-block: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+.Confirmation .container .confirm p span{
+    font-weight: bold;
+    color: var(--main-color);
+    margin-right: 10px;
+}
+.Confirmation .container .confirm img{
+    width: 400px;
+}
+@media (max-width : 500px){
+    .Confirmation .container .confirm img{
+        width: 300px;
+    }
+}

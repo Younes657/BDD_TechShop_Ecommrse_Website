@@ -1,0 +1,21 @@
+﻿@model OrderHeader
+<section class="Confirmation">
+    <div class="container">
+        <div class="Box">
+            <h1>Thank You For Your Order</h1>
+            <form class="confirm" action="">
+                <p><span>Order Number is :</span>@Model.Id</p>
+                <p><span>Order Total is :</span> @Model.OrderTotal.ToString("c")</p>
+                <p><span>Order Date is :</span> @Model.OrderDate.ToString("d") </p>
+                <div class="image">
+                    <img src="~/images/Confirmation.png" alt="">
+                </div>
+                <h3>Your Order Is Placed Successfully </h3>
+                <div class="order-btn btns">
+                    <a href="#" style="width: 100%;">Check The Proccessing of Your Order</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
