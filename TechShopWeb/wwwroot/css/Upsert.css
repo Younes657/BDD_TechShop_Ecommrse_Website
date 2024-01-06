@@ -30,7 +30,9 @@
 }
 .Box form > div{
     width:100%;
-    margin-bottom:20px;
+}
+.Upsert .container .Box div {
+    margin-bottom: 20px;
 }
 .Box form label{
     color:gray;
@@ -113,7 +115,7 @@ form .btns{
     display:flex;
     justify-content:center;
     gap: 15px;
-    width:70%;
+    width:100%;
     margin-top:30px;
 }
 form .btns :where(a , button){

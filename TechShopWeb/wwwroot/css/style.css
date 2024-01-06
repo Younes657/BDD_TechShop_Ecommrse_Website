@@ -157,13 +157,13 @@ header .container .Active{
   background-color: #fafafa;
 }
 /* responsive */
-@media (max-width: 991px) and (min-width : 767px) {
+/*@media (max-width: 991px) and (min-width : 767px) {
   header .container .left .navBar > li {
     padding-inline:10px;
     font-size: 14px;
   }
-}
-@media (max-width: 767px) {
+}*/
+@media (max-width: 991px) {
   header .container .left .navBar {
     display: none;
     position: absolute;
@@ -193,7 +193,7 @@ header .container .Active{
     justify-content: flex-start;
   }
 }
-@media (min-width: 767px) {
+@media (min-width: 991px) {
   header .container .right .list-head {
     display: none;
   }
@@ -251,10 +251,11 @@ header .container .left .navBar li .drop-down li a:hover{
     z-index: 100;
 }
 header .container .right li a span{
-    padding-inline: 13px;
+    padding-inline : 13px;
     color: white;
     font-weight:bold;
     background-color:lightcoral;
     border-radius:50%;
     margin-left:5px;
+    /*line-height:100;*/
 }

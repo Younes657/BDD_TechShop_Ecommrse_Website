@@ -1,0 +1,44 @@
+﻿
+.special.Box form .Order.all-content .order-dtl{
+    width: 40%;   
+}
+.special.Box form .Order.all-content .shop-dtl{
+    width:50%;
+}
+.special.Box form .Order.all-content .shop-dtl > p{
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    padding-block: 8px;
+    text-align: center;
+    margin-block: 20px 10px;
+}
+.special.Box form .Order.all-content .shop-dtl .ord-summary .ord{
+    border: 1px solid #ccc;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 15px;
+    padding: 10px 20px;
+}
+.special.Box form .Order.all-content .shop-dtl .ord-summary .ord div p{
+    margin-bottom: 5px;
+}
+.special.Box form .Order.all-content .shop-dtl .ord-summary .ord div p:first-child{
+    color: var(--main-color);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.special.Box form .Order.all-content  h2{
+    margin-bottom: 10px;
+    color: var(--second-color);
+}
+@media (max-width: 991px){
+    .special.Box form .all-content.Order .shop-dtl{
+        width: 100%;
+    }
+    .special.Box form .all-content.Order .order-dtl{
+        width: 90%;
+        margin-inline: auto;
+    }
+}

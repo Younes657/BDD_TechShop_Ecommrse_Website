@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/ProductDetail.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/ShoppingCart.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/OrderDetails.css" asp-append-version="true">
     <link rel="stylesheet" href="~/icons/css/all.min.css" asp-append-version="true">
 
     <title>TechShopWeb</title>
@@ -58,7 +59,7 @@
         </div>
         <ul class="navBar">
           <li class="center Active" data-src="home"><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
-          <li class="center " data-src="Order"><a href="#"> Order Management</a></li>
+          <li class="center " data-src="Order"><a asp-area="Admin" asp-controller="Order" asp-action="Index"> Order Management</a></li>
           <li class="center" data-src="dashboard"><a href="#"> DashBoard</a></li>
           <li class="center" data-src="manage">
             <div>Manage <i style="padding-left: 5px;" class="fa-solid fa-chevron-down fa-2xs"></i></div>

@@ -28,7 +28,7 @@
     }
 }
 .special.Box form .all-content .order-dtl div{
-    margin-bottom: 10px;
+    margin-block: 12px;
 }
 .special.Box form .all-content .shop-dtl .row{
     display: flex;
@@ -66,7 +66,10 @@
 .special.Box form .all-content .shop-dtl .row a:hover{
     opacity: 0.7;
 }
-.special.Box form .all-content .order-dtl .order-btn button{
+.special.Box form .all-content .order-btn{
+    flex-direction: column;   
+}
+.special.Box form .all-content .order-btn button{
     width: 100%;
 }
 .special.Box form .Back{

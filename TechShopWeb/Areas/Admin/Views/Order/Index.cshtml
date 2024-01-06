@@ -1,0 +1,80 @@
+﻿@model IEnumerable<OrderHeader>
+@{
+    var status = Context.Request.Query["status"];
+    string Canceled = "", Inprocess = "", Completed = "", Aproved = "", All = "";
+    switch (status)
+    {
+        case SD.StatusInProcess:
+            Inprocess = "active";
+            break;
+        case SD.StatusCanceled:
+            Canceled = "active";
+            break;
+        case SD.StatusShipped:
+            Completed = "active";
+            break;
+        case SD.StatusAproved:
+            Aproved = "active";
+            break;
+        default:
+            All = "active";
+            break;
+    }
+}
+
+<section class="categories">
+    <div class="container">
+        <div class="title">
+            <h1>Orders List</h1>
+        </div>
+        <ul class="status">
+            <li><a class="@All" asp-action="Index" asp-route-status="All">All</a></li>
+            <li><a class="@Aproved" asp-action="IndexSpecific" asp-route-status="@SD.StatusAproved">
+                <i class="fa-solid fa-check"></i>&nbsp;Aproved</a></li>
+            <li><a class="@Inprocess" asp-action="IndexSpecific" asp-route-status="@SD.StatusInProcess">
+                <i class="fa-solid fa-spinner"></i>&nbsp;In Process</a></li>
+            <li><a class="@Completed" asp-action="IndexSpecific" asp-route-status="@SD.StatusShipped">
+                <i class="fa-solid fa-circle-check"></i>&nbsp;Completed</a></li>
+            <li><a class="@Canceled" asp-action="IndexSpecific" asp-route-status="@SD.StatusCanceled">
+                <i class="fa-solid fa-ban"></i>&nbsp; Canceled</a></li>
+        </ul>
+        <div class="content">
+            <table class="content-tabel">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Order Date</th>
+                        <th>Order Status</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="forprd" data-cell="ID">@item.Id</td>
+                            <td class="forprd" data-cell="Name">@item.Name</td>
+                            <td class="forprd" data-cell="Phone">@item.PhoneNumber</td>
+                            <td class="forprd" data-cell="Email">@item.Email</td>
+                            <td class="forprd" data-cell="Order Date">@item.OrderDate.ToString("d")</td>
+                            <td class="forprd" data-cell="Order Status">@item.OrderStatus</td>
+                            <td class="forprd" data-cell="Total">@item.OrderTotal.ToString("c")</td>
+                            <td>
+                                <div>
+                                    <a class="edit" asp-controller="Order" asp-action="Details" asp-route-id="@item.Id">
+                                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

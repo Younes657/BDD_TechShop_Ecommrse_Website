@@ -21,7 +21,7 @@ namespace ShopTech.Models
         public int? ShipperId { get; set; }
         [ValidateNever]
         public Shipper? Shipper { get; set; }
-        public int TrackingNumber { get; set; }
+        public string? TrackingNumber { get; set; }
         //info about the customer
 
         [Required]

@@ -30,7 +30,7 @@ namespace ShopTech.DataAccess.Repository
             }
             else
             {
-                query = Set.FromSqlRaw($"SELECT  TOP (100) PERCENT * FROM dbo.{TabelName}");
+                query = Set.FromSqlRaw($"SELECT  TOP (100) PERCENT * FROM {TabelName}");
             }
 
             if (!string.IsNullOrEmpty(IncludePr))

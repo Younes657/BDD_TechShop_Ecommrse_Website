@@ -25,7 +25,7 @@ namespace ShopTech.DataAccess.Repository
 
         public void Update(OrderHeader ordHeader)
         {
-            _ = _db.Database.ExecuteSql($"Update OrderHeaders Set UserId = {ordHeader.UserId} ,OrderDate={ordHeader.OrderDate} ,OrderShippingDate={ordHeader.OrderShippingDate} , OrderTotal ={ordHeader.OrderTotal},OrderStatus={ordHeader.OrderStatus} ,PaymentStatus={ordHeader.PaymentStatus} ,PaymentDate={ordHeader.PaymentDate} ,ShipperId= {ordHeader.ShipperId} ,TrackingNumber={ordHeader.TrackingNumber}, Name={ordHeader.Name} ,Adress={ordHeader.Adress}, PhoneNumber={ordHeader.PhoneNumber},PostalCode={ordHeader.PostalCode} ,Email={ordHeader.Email} ,City={ordHeader.City}");
+            _ = _db.Database.ExecuteSql($"Update OrderHeaders Set UserId = {ordHeader.UserId} ,OrderDate={ordHeader.OrderDate} ,OrderShippingDate={ordHeader.OrderShippingDate} , OrderTotal ={ordHeader.OrderTotal},OrderStatus={ordHeader.OrderStatus} ,PaymentStatus={ordHeader.PaymentStatus} ,PaymentDate={ordHeader.PaymentDate} ,ShipperId= {ordHeader.ShipperId} ,TrackingNumber={ordHeader.TrackingNumber}, Name={ordHeader.Name} ,Adress={ordHeader.Adress}, PhoneNumber={ordHeader.PhoneNumber},PostalCode={ordHeader.PostalCode} ,Email={ordHeader.Email} ,City={ordHeader.City} Where Id = {ordHeader.Id}");
         }
         public void UpdateStatus(int id , string OrderStatus , string? PaymentStatus = null)
         {

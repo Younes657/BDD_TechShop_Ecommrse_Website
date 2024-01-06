@@ -1,0 +1,174 @@
+﻿@model OrderVM
+
+<section>
+    <div class="container">
+        <div class="Box special">
+            <h1><i class="fa-solid fa-cart-shopping"></i>&nbsp; Order Summary</h1>
+            <form method ="post" enctype="multipart/form-data">
+                <input asp-for="OrderHeader.Id" hidden />
+                <a class="Back" asp-controller="Order" asp-action="Index">Back To Orders</a>
+                <div class="all-content Order">
+                    <div class="order-dtl">
+                        <h2>Details : </h2>
+                        <div>
+                            <label asp-for="OrderHeader.Name"></label>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <input asp-for="OrderHeader.Name"/>
+                                <span asp-validation-for="OrderHeader.Name"></span>
+                            }
+                            else
+                            {
+                                <input asp-for="OrderHeader.Name" readonly />
+                            }
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.PhoneNumber">Phone</label>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <input asp-for="OrderHeader.PhoneNumber"/>
+                                <span asp-validation-for="OrderHeader.PhoneNumber"></span>
+                            }
+                            else
+                            {
+                                <input asp-for="OrderHeader.PhoneNumber" readonly/>
+                            }
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.City"></label>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <input asp-for="OrderHeader.City" />
+                                <span asp-validation-for="OrderHeader.City"></span>
+                            }
+                            else
+                            {
+                                <input asp-for="OrderHeader.City" readonly/>
+                            }
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.Adress"></label>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <input asp-for="OrderHeader.Adress"  />
+                                <span asp-validation-for="OrderHeader.Adress"></span>
+                            }
+                            else
+                            {
+                                <input asp-for="OrderHeader.Adress" readonly />
+                            }
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.Email"></label>
+                            <input asp-for="OrderHeader.Email" readonly class="form-control" />
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.PostalCode">Postal Code</label>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <input asp-for="OrderHeader.PostalCode" />
+                                <span asp-validation-for="OrderHeader.PostalCode"></span>
+                            }
+                            else
+                            {
+                                <input asp-for="OrderHeader.PostalCode" readonly />
+                            }
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.OrderDate">Order Date</label>
+                            <input value="@Model.OrderHeader.OrderDate.ToString("d")" readonly />
+                        </div>
+                        <div>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {   <div class="selectItem">
+                                    <select id="selectList" class="select-cr" asp-items="@Model.ListShippers" asp-for="OrderHeader.ShipperId">
+                                        <option disabled selected>Select a Shipper</option>
+                                    </select>
+                                </div>
+                            }
+                            else
+                            {
+                                <label asp-for="OrderHeader.ShipperId">Shipper</label>
+                                <input value="@Model.OrderHeader.Shipper?.CompanyName" readonly/>
+                            }
+                        </div>
+                        <div>
+                            <label asp-for="OrderHeader.TrackingNumber">Tracking Number</label>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <input id="track" asp-for="OrderHeader.TrackingNumber" />
+                            }
+                            else
+                            {
+                                <input asp-for="OrderHeader.TrackingNumber" readonly  />
+                            }
+                        </div>
+                        <div>
+                            <label>Shipping Date</label>
+                            <input type="text" value="@Model.OrderHeader.OrderShippingDate.ToString()" readonly>
+                        </div>
+                        <div>
+                            <label>Payment Date</label>
+                            <input type="text" value="@Model.OrderHeader.PaymentDate.ToString()" readonly>
+                        </div>
+                        <div>
+                            <label for="">Payment Status</label>
+                            <input asp-for="OrderHeader.PaymentStatus" readonly/>
+                        </div>
+                        <div class="order-btn btns" style=" margin-top:25px;">
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <button asp-action="UpdateOrder" type="submit">Update Order Details</button>
+                            }
+                        </div>
+                    </div>
+                    <div class="shop-dtl">
+                        <h2>Order Summary :</h2>
+                        <p>Order Status - @Model.OrderHeader.OrderStatus</p>
+                        <div class="ord-summary">
+                            @foreach(var item in Model.OrderDetails){
+                            <div class="ord">
+                                <div>
+                                    <p>@item.Product.ProductName</p>
+                                    <p>Price : @item.Price.ToString("c")</p>
+                                    <p>Quantity : @item.Quantity</p>
+                                </div>
+                                <p>@((item.Price * item.Quantity).ToString("c"))</p>
+                            </div>
+                            }
+                            <div class="total" style="margin: 0;">
+                                <p class="desc">Total Order :</p>
+                                <p class="number">@Model.OrderHeader.OrderTotal</p>
+                            </div>
+                            <div class="order-btn btns">
+                                @if (User.IsInRole(SD.Role_Admin))
+                                {
+                                    @if (Model.OrderHeader.OrderStatus == SD.StatusAproved)
+                                    {
+                                        <button type="submit" asp-action="Processing">Start Processing</button>
+                                    }
+                                    @if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
+                                    {
+                                        <button type="submit" asp-action="Shipping" onclick="return ValidateShip()">Ship Order</button>
+                                    }
+                                    @if (Model.OrderHeader.OrderStatus != SD.StatusRefunded
+                                   && Model.OrderHeader.OrderStatus != SD.StatusShipped && Model.OrderHeader.OrderStatus != SD.StatusCanceled)
+                                    {
+                                        <button type="submit" asp-action="CancelOrder" class="btn btn-danger form-control my-1">Cancel Order</button>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/js/shipChecking.js"></script>
+}
+
