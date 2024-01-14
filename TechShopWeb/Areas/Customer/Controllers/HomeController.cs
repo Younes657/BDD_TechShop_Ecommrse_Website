@@ -5,6 +5,7 @@ using ShopTech.DataAccess.Repository.IRepository;
 using ShopTech.DataAccess.Repository;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using ShopTech.Utility;
 
 namespace TechShopWeb.Areas.Customer.Controllers
 {
@@ -97,7 +98,8 @@ namespace TechShopWeb.Areas.Customer.Controllers
             {
                 unitOfWork._ShoppingCartRepository.Add(Cart);
                 msg = "Cart Added  successfully";
-                //session comming soon
+
+                HttpContext.Session.SetInt32(SD.SessionCart, unitOfWork._ShoppingCartRepository.GetAll("ShoppingCarts", $"where UserId = '{result}'").Count());
             }
             TempData["success"] = msg;
             return RedirectToAction(nameof(Index));

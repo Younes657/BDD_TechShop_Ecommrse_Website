@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ShopTech.DataAccess.Repository;
 using ShopTech.DataAccess.Repository.IRepository;
 using ShopTech.Models;
 using ShopTech.Models.VModels;
@@ -115,7 +116,7 @@ namespace TechShopWeb.Areas.Customer.Controllers
             if (cart.Quantity <= 1)
             {
                 _unitOfWork._ShoppingCartRepository.Remove("ShoppingCarts", cart.Id);
-                /*HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(x => x.userId == cart.userId).Count() - 1);*///in here -1 because when we remove we are not saving the changes so the changes is happening only in memory
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork._ShoppingCartRepository.GetAll("ShoppingCarts", $"where UserId = '{cart.UserId}'").Count());
             }
             else
             {
@@ -129,9 +130,9 @@ namespace TechShopWeb.Areas.Customer.Controllers
             //in here we are not tracking the cart because we already set it to false in the repository but when we call the remove that mean ef is tracking the cart
             var cart = _unitOfWork._ShoppingCartRepository.GetOne("ShoppingCarts", "Where Id = " + id);
             _unitOfWork._ShoppingCartRepository.Remove("ShoppingCarts" , cart.Id);
-     
-            //if we put this statement between getone and remove , an error will occured because we are tracking the same cart twice inside setint 32 first then when we call the remove
-            /*HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(x => x.userId == cart.userId).Count());*/// we don't have to set -1 like Minus action because we already call the save changes
+
+
+            HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork._ShoppingCartRepository.GetAll("ShoppingCarts", $"where UserId = '{cart.UserId}'").Count());
 
             return RedirectToAction(nameof(Index));
         }
