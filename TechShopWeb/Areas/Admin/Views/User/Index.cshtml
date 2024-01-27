@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ApplicationUser>
+
+<section class="categories">
+    <div class="container">
+        <div class="title">
+            <h1>Users List</h1>
+        </div>
+        <div class="content">
+            <table class="content-tabel">
+                <thead>
+                    <tr>
+                        
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Adress</th>
+                        <th>Role</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="specific" style="display:none;" >@item.Id</td>
+                            <td class="forprd" data-cell="Name">@item.Name</td>
+                            <td class="forprd" data-cell="Phone">@item.PhoneNumber</td>
+                            <td class="forprd" data-cell="Email">@item.Email</td>
+                            <td class="forprd" data-cell="City">@item.city</td>
+                            <td class="forprd" data-cell="Adress">@item.Adress</td>
+                            <td class="forprd" data-cell="Role">@item.Role</td>
+                            <td>
+                                <div>
+                                    <a asp-controller="User" asp-action="LockUnlock" asp-route-id="@item.Id" class="lock edit"></a>
+                                    <a class="edit" asp-controller="User" asp-action="Permission" asp-route-id="@item.Id">
+                                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/ManageUser.js"></script>
+}

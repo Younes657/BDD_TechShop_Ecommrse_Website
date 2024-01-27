@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShopTech.DataAccess.Repository.IRepository;
 using ShopTech.Models;
+using ShopTech.Utility;
 
 namespace TechShopWeb.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     [Area("Admin")]
     public class CategoryController : Controller
     {

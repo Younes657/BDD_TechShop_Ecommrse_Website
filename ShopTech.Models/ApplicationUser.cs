@@ -22,5 +22,7 @@ namespace ShopTech.Models
         public ICollection<OrderHeader> OrderHeaders { get; set; } = new List<OrderHeader>();
         [ValidateNever]
         public ICollection<ShoppingCart> ShoppingCarts { get; set; } = new List<ShoppingCart>();
+        [NotMapped]
+        public string Role { get; set; }
     }
 }

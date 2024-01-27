@@ -250,12 +250,13 @@ header .container .left .navBar li .drop-down li a:hover{
     transition: 0.5s;
     z-index: 100;
 }
-header .container .right li a span{
-    padding-inline : 13px;
+header .container .right li a span {
+    padding-inline: 13px;
     color: white;
-    font-weight:bold;
-    background-color:lightcoral;
-    border-radius:50%;
-    margin-left:5px;
+    font-weight: bold;
+    background-color: lightcoral;
+    border-radius: 50%;
+    margin-left: 5px;
+    padding-block: 3px;
     /*line-height:100;*/
 }

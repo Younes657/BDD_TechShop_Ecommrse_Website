@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopTech.DataAccess.Repository.IRepository;
 using ShopTech.Models;
 using ShopTech.Models.VModels;
+using ShopTech.Utility;
 
 namespace TechShopWeb.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     [Area("Admin")]
     public class ProductController : Controller
     {
@@ -107,7 +110,6 @@ namespace TechShopWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Search(string ValueToSearch , string? sortVal) 
         {
-            //we should handle the submit event if the search value is empty by js;
             string sqlQuery;
             if (string.IsNullOrEmpty(sortVal))
             {

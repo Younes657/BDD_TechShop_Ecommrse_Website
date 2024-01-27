@@ -259,9 +259,6 @@ namespace ShopTech.DataAccess.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Discount")
-                        .HasColumnType("real");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -287,6 +284,10 @@ namespace ShopTech.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -295,10 +296,10 @@ namespace ShopTech.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly>("OrderDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateOnly>("OrderShippingDate")
+                    b.Property<DateOnly?>("OrderShippingDate")
                         .HasColumnType("date");
 
                     b.Property<string>("OrderStatus")
@@ -323,11 +324,11 @@ namespace ShopTech.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ShipperId")
+                    b.Property<int?>("ShipperId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TrackingNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("TrackingNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -412,11 +413,11 @@ namespace ShopTech.DataAccess.Migrations
 
             modelBuilder.Entity("ShopTech.Models.ShoppingCart", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -431,7 +432,7 @@ namespace ShopTech.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 

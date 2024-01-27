@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShopTech.DataAccess.Repository;
 using ShopTech.DataAccess.Repository.IRepository;
 using ShopTech.Models;
+using ShopTech.Utility;
 
 namespace TechShopWeb.Areas.Admin.Controllers
 {
-	[Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
+    [Area("Admin")]
 	public class ShipperController : Controller
 	{
 		private readonly IUnitOfWork UnitOfWork;

@@ -60,16 +60,22 @@
         <ul class="navBar">
           <li class="center Active" data-src="home"><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
           <li class="center " data-src="Order"><a asp-area="Admin" asp-controller="Order" asp-action="Index"> Order Management</a></li>
-          <li class="center" data-src="dashboard"><a href="#"> DashBoard</a></li>
-          <li class="center" data-src="manage">
-            <div>Manage <i style="padding-left: 5px;" class="fa-solid fa-chevron-down fa-2xs"></i></div>
-            <ul class="drop-down">
-              <li><a asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Categoreis</a></li>
-              <li><a asp-area="Admin" asp-controller="Product" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Products</a></li>
-              <li><a asp-area="Admin" asp-controller="Shipper" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Shippers</a></li>
-            </ul>
-          </li>
-        </ul>
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <li class="center" data-src="dashboard"><a href="#"> DashBoard</a></li>
+                        <li class="center" data-src="manage">
+                            <div>Manage <i style="padding-left: 5px;" class="fa-solid fa-chevron-down fa-2xs"></i></div>
+                            <ul class="drop-down">
+                                <li><a asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Categoreis</a></li>
+                                <li><a asp-area="Admin" asp-controller="Product" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Products</a></li>
+                                <li><a asp-area="Admin" asp-controller="Shipper" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Shippers</a></li>
+                                <li><a asp-area="Admin" asp-controller="User" asp-action="Index"><i class="fa-solid fa-angles-right"></i>Users</a></li>
+                                <hr />
+                                <li><a asp-area="Identity" asp-controller="Authentication" asp-action="Register"><i class="fa-solid fa-angles-right"></i>Add User</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
       </div>
       <ul class="right">
          <li class="center" style="margin-right: 10px;"><a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" style="color:#2196f3">

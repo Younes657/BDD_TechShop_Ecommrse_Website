@@ -41,7 +41,7 @@ namespace TechShopWeb.Areas.Admin.Controllers
             IEnumerable<OrderHeader> Orders;
             if (User.IsInRole(SD.Role_Admin))
             {
-                Orders = _unitOfWork._OrderHeaderRepository.GetAll("OrderHeaders",$"Where OrderStatus ='{status}' Or PaymentStatus = '{status}'", IncludePr:"AppUser");
+                Orders = _unitOfWork._OrderHeaderRepository.GetAll("OrderHeaders",$"Where OrderStatus ='{status}'", IncludePr:"AppUser");
             }
             else
             {

@@ -101,6 +101,7 @@ namespace TechShopWeb.Areas.Customer.Controllers
 
             _unitOfWork.AppDbContext().ShoppingCarts.RemoveRange(shopCarts);
             _unitOfWork.AppDbContext().SaveChanges();
+            HttpContext.Session.Clear();
             return View(order);
         }
         public IActionResult Plus(int id)
