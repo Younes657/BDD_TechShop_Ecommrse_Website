@@ -1,6 +1,7 @@
 ﻿let listHead = document.querySelector(".list-head");
 let navBar = document.querySelector("header .container .left .navBar");
 let navBarelm = document.querySelectorAll("header .container .left .navBar > li");
+let rightDis = document.querySelector("header .container .right .right-dis");
 //for the active class
 //navBar.onclick = function (e) {
 //    console.log(e.target)
@@ -40,6 +41,7 @@ listHead.onclick = function () {
     console.log("clicked");
     console.log(navBar.classList)
     navBar.classList.toggle("toggle");
+    rightDis.classList.toggle("toggler")
 }
 // for the scroll button
 let btnScroll = document.querySelector(".toThetop")

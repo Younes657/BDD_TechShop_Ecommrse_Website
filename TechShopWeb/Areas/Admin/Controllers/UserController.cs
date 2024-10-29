@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopTech.DataAccess.Repository.IRepository;
 using ShopTech.Utility;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 
 namespace TechShopWeb.Areas.Admin.Controllers
 {

@@ -82,9 +82,10 @@
                         @await Component.InvokeAsync("ShoppingCartCount")
                     </a>
                 </li>
+                <div class="right-dis">
          @if (User.Identity.IsAuthenticated)
          {
-             <li class="center"><a href="#">
+             <li class="center "><a href="#">
                  @User.Identity.Name <span>@User.Identity.Name[0]</span>
              </a></li>
              <li class="center">
@@ -98,10 +99,11 @@
          }
          else
          {
-             <li class="center"><a class="login btn" asp-area="Identity" asp-controller="Authentication" asp-action="Login">Login</a></li>
-             <li class="center"><a class="register btn" asp-area="Identity" asp-controller="Authentication" asp-action="Register">Register</a></li>
+             <li class="center "><a class="login btn" asp-area="Identity" asp-controller="Authentication" asp-action="Login">Login</a></li>
+             <li class="center "><a class="register btn" asp-area="Identity" asp-controller="Authentication" asp-action="Register">Register</a></li>
 
          }
+        </div>
          <li class="center"><i class="list-head  fa-solid fa-list"></i></li>
       </ul>
     </div>

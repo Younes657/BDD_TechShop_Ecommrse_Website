@@ -107,7 +107,7 @@ header .container .left .logo img {
 header .container .right {
   display: flex;
 }
-header .container .right > li {
+header .container .right  li {
   margin-left: 5px;
 }
 header .container .right li .btn {
@@ -179,7 +179,7 @@ header .container .Active{
   }
   header .container .left .toggle {
     display: flex;
-    top: 100%;
+    top: 172%;
     z-index:100;
   }
   header .container .left .navBar > li {
@@ -198,10 +198,31 @@ header .container .Active{
     display: none;
   }
 }
+header .container .right .right-dis{
+    display : flex;
+}
+@media (max-width: 991px) {
+    header .container .right .right-dis {
+        display: none;
+        justify-content: center;
+        position: absolute;
+        bottom: -70%;
+        z-index: 1000;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding-block: 6px;
+    }
+    header .container .right .toggler {
+        display: flex !important;
+        z-index: 100;
+    }
+}
+
 /* design the drop down */
-header .container .left .navBar li:last-child{
-  position: relative;
-  cursor:context-menu;
+header .container .left .navBar li:last-child {
+    position: relative;
+    cursor: context-menu;
 }
 header .container .left .navBar li:last-child:hover .drop-down{
   display: block;
